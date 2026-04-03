@@ -17,6 +17,8 @@ title: "MG Naik Portfolio"
 name: "Meetkumar Naik"
 email: "meetkumarnaik@gmail.com"
 description: "Robotics | Control Theory | AI"
+url: "https://MGNaik.github.io"
+baseurl: ""
 github_username: MGNaik
 minimal_mistakes_skin: dirt
 search: true
