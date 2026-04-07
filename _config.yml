@@ -43,7 +43,7 @@ plugins:
 
 author:
   name   : "Meetkumar Naik"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : "/assets/images/Headshot.jpg"
   bio: "Mechatronics engineer building things that move. This is where I document the thinking behind the work"
   links:
     - label: "GitHub"
