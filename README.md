@@ -1,45 +1,73 @@
-# SETPOINT skin → MGNaik.github.io (Minimal Mistakes)
+# SETPOINT — custom Jekyll site for MGNaik.github.io
 
-Drop-in reskin of your Jekyll site to the **SETPOINT** "Field Notes" identity —
-warm cream paper, Space Grotesk / Inter / Space Mono, single signal-lime accent.
-No layout changes: search, pagination, archives, read-time and author profile
-all keep working, and your Markdown posts are untouched.
+This replaces the Minimal Mistakes theme with **hand-built Jekyll layouts that
+are the SETPOINT design**. You keep GitHub Pages, Jekyll, and your Markdown
+posts — only the presentation layer changes. Search, tag/category archives,
+read-time, pagination and the author profile are all included and self-contained
+(no theme, no remote_theme).
 
-> **v2 — single-file skin.** The skin variables now live *inside*
-> `assets/css/main.scss` instead of a separate `_sass` partial. This removes the
-> remote-theme import that was breaking the GitHub Pages build.
+## How to install (drop-in)
 
-## What's in here (mirror these paths into your repo root)
+1. **Copy everything in this folder into your repo root**, overwriting when asked.
+   It adds/*replaces*:
+   ```
+   _config.yml                      (REPLACES yours)
+   _data/navigation.yml             (REPLACES — adds a "Tags" link)
+   _layouts/  default, home, post, page
+   _includes/ masthead, footer, author-profile, post-card
+   index.html                       (REPLACES — now the SETPOINT home)
+   posts.html  tags.html  categories.html  search.html  search.json  404.md
+   assets/css/setpoint.css
+   assets/js/search.js
+   assets/fonts/*.ttf  (4)
+   assets/images/Headshot.jpg       (your avatar — config points here)
+   ```
 
-```
-assets/css/main.scss                  ← skin variables + theme + webfonts (all-in-one)
-assets/fonts/Inter-Variable.ttf
-assets/fonts/SpaceGrotesk-Variable.ttf
-assets/fonts/SpaceMono-Regular.ttf
-assets/fonts/SpaceMono-Bold.ttf
-```
+2. **Delete these now-unused files from your repo** (they're Minimal Mistakes
+   leftovers and will conflict):
+   ```
+   _sass/                           ← MM skin, no longer used
+   assets/css/main.scss             ← replaced by assets/css/setpoint.css
+   _includes/head/custom.html       ← behaviour folded into _layouts/default.html
+   _pages/posts.md                  ← replaced by /posts.html (permalink clash otherwise)
+   _pages/404.md                    ← replaced by /404.md
+   ```
+   (You can delete the whole `_pages/` folder if it now only holds those two.)
 
-## Steps to ship
+3. **Your `_posts/*.md` stay exactly as they are.** Front matter already has
+   `title`, `date`, `categories`, `tags` — that's all these layouts need.
+   `classes: wide` (in one post) is harmless and ignored.
 
-1. **Copy `assets/css/main.scss`** into your repo at `assets/css/main.scss`
-   (overwrite the previous one if you added it).
-2. **Copy the four fonts** into `assets/fonts/`.
-3. **If you added a `_sass/minimal-mistakes/skins/_setpoint.scss` earlier, delete it** —
-   it's no longer used.
-4. **`_config.yml`:** the `minimal_mistakes_skin` line no longer matters (this
-   file applies the skin itself), so you can leave it, set it to `"default"`, or
-   remove it — any of those is fine.
-5. **Commit & push to `master`.** Pages rebuilds in ~1 min → https://MGNaik.github.io
+4. **Commit & push to `master`.** GitHub Pages rebuilds in ~1 min →
+   https://MGNaik.github.io
 
-## Why the first build failed
+## What you get
 
-The earlier version used a separate skin partial that Jekyll had to resolve
-through the remote theme's Sass load path. When that `@import` can't be found,
-the whole SCSS compile (and the build) fails. This version inlines everything
-into `main.scss`, so there's nothing external to resolve.
+| Page | URL | Notes |
+|------|-----|-------|
+| Home | `/` | Hero + recent-writing cards, paginated (6 per page) |
+| All posts | `/posts/` | Full card listing |
+| Tags | `/tags/` | Tag cloud + posts grouped per tag (anchored) |
+| Categories | `/categories/` | Posts grouped per category |
+| Search | `/search/` | Client-side search over title, tags & excerpt |
+| Post | `/:categories/:title/` | Article card + tags + author rail |
 
-## Notes
+## Notes & tweaks
 
-- Preview locally with `bundle exec jekyll serve`.
-- To revert: restore the original `assets/css/main.scss` (or delete it so the
-  theme's own is used again) and remove the fonts.
+- **Nav links** live in `_data/navigation.yml`. The search icon is added
+  automatically in the masthead.
+- **Hero copy** (the big headline + tagline) is in `_layouts/home.html`.
+- **Read-time** is computed as `words ÷ 200 + 1` min — change the `200` in
+  `_includes/post-card.html`, `_layouts/post.html` and `search.json` to taste.
+- **Colors / type / spacing** are CSS variables at the top of
+  `assets/css/setpoint.css` (the SETPOINT tokens). Edit there to retune.
+- **Code highlighting** uses Rouge (set in `_config.yml`); the warm palette is
+  in the `.highlight .*` rules near the bottom of the CSS.
+- **Comments** were dropped, as requested.
+- Preview locally with `bundle exec jekyll serve` (your existing `Gemfile`
+  with the `github-pages` gem already supports everything here).
+
+## To revert
+
+Restore your previous `_config.yml`, `assets/css/main.scss`, `_sass/`,
+`index.html`, and `_pages/`, and delete the files this package added.

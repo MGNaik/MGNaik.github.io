@@ -1,0 +1,21 @@
+---
+title: "Search"
+permalink: /search/
+layout: default
+---
+<div class="shell">
+  <header class="page-head">
+    <h1 class="page-head__title">Search</h1>
+    <p class="page-head__sub">Title, tags &amp; excerpt</p>
+  </header>
+
+  <div class="search-field">
+    <i class="fas fa-search" aria-hidden="true"></i>
+    <input type="text" id="search-input" placeholder="Search the writing…" autocomplete="off" autofocus>
+  </div>
+
+  <p class="search-status" id="search-status">Type to search {{ site.posts | size }} posts.</p>
+  <div class="cards" id="results"></div>
+</div>
+
+<script src="{{ '/assets/js/search.js' | relative_url }}"></script>

@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<div class="shell">
+  <header class="hero">
+    <p class="hero__eyebrow"><span class="hero__dot"></span> Robotics · Control · AI</p>
+    <h1 class="hero__title">Notes on making things <span class="mark">move better</span>.</h1>
+    <p class="hero__lede">An engineer's working notebook — autonomous systems, control theory, and the thinking behind each build.</p>
+  </header>
+
+  <div class="section-head">
+    <h2 class="section-head__label">Recent writing</h2>
+    <a class="section-head__link" href="{{ '/posts/' | relative_url }}">All posts →</a>
+  </div>
+
+  <div class="cards">
+    {% for post in paginator.posts %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+
+  {% if paginator.total_pages > 1 %}
+  <nav class="pagination">
+    {% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">← Newer</a>{% else %}<span></span>{% endif %}
+    <span class="pagination__count">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+    {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">Older →</a>{% else %}<span></span>{% endif %}
+  </nav>
+  {% endif %}
+</div>

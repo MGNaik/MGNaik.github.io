@@ -1,0 +1,14 @@
+<header class="masthead">
+  <nav class="masthead__inner">
+    <a class="wordmark-link" href="{{ '/' | relative_url }}">
+      <span class="wordmark">{{ site.title }}</span>
+      {% if site.description %}<span class="tagline">{{ site.description | replace: '|', '·' }}</span>{% endif %}
+    </a>
+    <div class="nav">
+      {% for item in site.data.navigation.main %}
+        <a href="{{ item.url | relative_url }}" class="nav__link{% if page.url == item.url %} is-active{% endif %}">{{ item.title }}</a>
+      {% endfor %}
+      <a href="{{ '/search/' | relative_url }}" class="nav__search" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+    </div>
+  </nav>
+</header>

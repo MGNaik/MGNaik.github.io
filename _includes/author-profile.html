@@ -1,0 +1,12 @@
+<aside class="author">
+  <img class="author__avatar" src="{{ site.author.avatar | relative_url }}" alt="{{ site.author.name }}">
+  <div class="author__body">
+    <div class="author__name">{{ site.author.name }}</div>
+    <p class="author__bio">{{ site.author.bio }}</p>
+    <div class="author__links">
+      {% for link in site.author.links %}
+        <a href="{{ link.url }}"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</aside>

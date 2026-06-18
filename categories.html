@@ -1,0 +1,29 @@
+---
+title: "Categories"
+permalink: /categories/
+layout: default
+---
+<div class="shell">
+  <header class="page-head">
+    <h1 class="page-head__title">Browse by category</h1>
+    <p class="page-head__sub">{{ site.categories | size }} categories</p>
+  </header>
+
+  {% assign sorted_cats = site.categories | sort %}
+  {% for cat in sorted_cats %}
+    <section class="archive-group">
+      <div class="archive-group__head" id="{{ cat[0] | slugify }}">
+        <h2 class="archive-group__name">{{ cat[0] }}</h2>
+        <span class="archive-group__count">{{ cat[1] | size }} post{% if cat[1] | size != 1 %}s{% endif %}</span>
+      </div>
+      <ul class="archive-list">
+        {% for post in cat[1] %}
+          <li>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <time>{{ post.date | date: "%b %-d, %Y" }}</time>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+</div>

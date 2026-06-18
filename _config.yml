@@ -5,45 +5,38 @@ description: "Robotics | Control Theory | AI"
 url: "https://MGNaik.github.io"
 baseurl: ""
 github_username: MGNaik
-minimal_mistakes_skin: "setpoints"
-search: true
 
-# Build settings
+# Build
 markdown: kramdown
-remote_theme: mmistakes/minimal-mistakes
-# Outputting
+highlighter: rouge
 permalink: /:categories/:title/
-paginate: 5 # amount of posts to show
+paginate: 6
 paginate_path: /page:num/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Australia/Perth
 
-include:
-  - _pages
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
-
-# Plugins (previously gems:)
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
   - jemoji
-  - jekyll-include-cache
 
+# Default layout for posts (so post files need no `layout:` line)
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+# Author rail
 author:
-  name   : "Meetkumar Naik"
-  avatar : "/assets/images/Headshot.jpg"
-  bio: "Mechatronics engineer building things that move. This is where I document the thinking behind the work"
+  name: "Meetkumar Naik"
+  avatar: "/assets/images/Headshot.jpg"
+  bio: "Mechatronics engineer building things that move. This is where I document the thinking behind the work."
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -52,6 +45,7 @@ author:
       icon: "fab fa-fw fa-linkedin"
       url: "https://au.linkedin.com/in/mkn100"
 
+# Footer links
 footer:
   links:
     - label: "GitHub"
@@ -60,33 +54,9 @@ footer:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://au.linkedin.com/in/mkn100"
-      
-defaults:
-  # _posts
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
-  # _pages
-  - scope:
-      path: "_pages"
-      type: pages
-    values:
-      layout: single
-      author_profile: true
 
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
-
-kramdown:
-  parse_block_html: true
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor

@@ -1,0 +1,35 @@
+---
+title: "Tags"
+permalink: /tags/
+layout: default
+---
+<div class="shell">
+  <header class="page-head">
+    <h1 class="page-head__title">Browse by tag</h1>
+    <p class="page-head__sub">{{ site.tags | size }} tags</p>
+  </header>
+
+  <div class="tag-cloud">
+    {% assign sorted_tags = site.tags | sort %}
+    {% for tag in sorted_tags %}
+      <a class="tag" href="#{{ tag[0] | slugify }}">{{ tag[0] }}<span class="tag__count">{{ tag[1] | size }}</span></a>
+    {% endfor %}
+  </div>
+
+  {% for tag in sorted_tags %}
+    <section class="archive-group">
+      <div class="archive-group__head" id="{{ tag[0] | slugify }}">
+        <h2 class="archive-group__name">{{ tag[0] }}</h2>
+        <span class="archive-group__count">{{ tag[1] | size }} post{% if tag[1] | size != 1 %}s{% endif %}</span>
+      </div>
+      <ul class="archive-list">
+        {% for post in tag[1] %}
+          <li>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <time>{{ post.date | date: "%b %-d, %Y" }}</time>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+</div>

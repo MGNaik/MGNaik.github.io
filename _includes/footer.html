@@ -1,9 +1,11 @@
-<div class="page__footer-follow">
-  <ul class="social-icons">
-    {% for link in site.footer.links %}
-      <li><a href="{{ link.url }}" rel="nofollow noopener noreferrer"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label }}</a></li>
-    {% endfor %}
-  </ul>
-</div>
-
-<div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}.</div>
+<footer class="footer">
+  <div class="footer__inner">
+    <span class="footer__brand">{{ site.title }}<span class="dot">.</span></span>
+    <div class="footer__links">
+      {% for link in site.footer.links %}
+        <a href="{{ link.url }}"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label }}</a>
+      {% endfor %}
+    </div>
+    <span class="footer__copy">© {{ site.time | date: '%Y' }} {{ site.name | default: site.title }} · Perth</span>
+  </div>
+</footer>
