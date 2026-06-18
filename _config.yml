@@ -5,7 +5,7 @@ description: "Robotics | Control Theory | AI"
 url: "https://MGNaik.github.io"
 baseurl: ""
 github_username: MGNaik
-minimal_mistakes_skin: dark
+minimal_mistakes_skin: "setpoints"
 search: true
 
 # Build settings

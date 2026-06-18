@@ -1,0 +1,70 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough).
+# This overrides the remote theme's main.scss so we can (a) select the SETPOINT
+# skin and (b) load the self-hosted SETPOINT webfonts.
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // theme partials
+
+/* SETPOINT self-hosted webfonts -------------------------------------------- */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../fonts/SpaceGrotesk-Variable.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("../fonts/SpaceMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("../fonts/SpaceMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* SETPOINT finishing touches the skin variables can't reach ----------------- */
+
+/* Display type: tighten the grotesk a touch, like the design system */
+h1, h2, h3, h4,
+.page__title,
+.archive__item-title,
+.page__content h1,
+.page__content h2,
+.page__content h3 {
+  letter-spacing: -0.01em;
+}
+
+/* The SETPOINT. wordmark — lime dot after the site title */
+.greedy-nav .site-title::after {
+  content: ".";
+  color: $primary-color;
+  font-weight: 700;
+}
+
+/* Warm hairline under the masthead island */
+.masthead {
+  border-bottom: 1px solid $border-color;
+}
+
+/* Lime selection highlight */
+::selection {
+  background: #C8F169;
+  color: #1C2B06;
+}
